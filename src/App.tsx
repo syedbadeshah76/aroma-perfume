@@ -12,6 +12,8 @@ import CartDrawer from "@/components/CartDrawer";
 import AboutPage from "@/pages/About"
 import Contact from "@/pages/Contact"
 import Cart from "@/pages/Cart";
+import { HashRouter} from "react-router-dom";
+
 
 const queryClient = new QueryClient();
 
@@ -21,7 +23,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+       <HashRouter>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/product/:id" element={<ProductDetail />} />
@@ -34,7 +36,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <CartDrawer />
-        </BrowserRouter>
+   </HashRouter>
       </TooltipProvider>
     
     </AppProvider>
