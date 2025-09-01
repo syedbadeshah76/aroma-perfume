@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/aroma-perfume/",   // 👈 yeh line add karo
+  base: "/gucci-perfume/",   // 👈 yeh line add karo
 
   server: {
     host: "::",
