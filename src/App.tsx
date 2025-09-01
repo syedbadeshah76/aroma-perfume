@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import CartDrawer from "@/components/CartDrawer";
 import AboutPage from "@/pages/About"
 import Contact from "@/pages/Contact"
+import Cart from "@/pages/Cart";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +28,7 @@ const App = () => (
             <Route path="/collections" element={<Collections />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/Contact" element={<Contact />} />
-            
+                <Route path="/cart" element={<Cart />} />            
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

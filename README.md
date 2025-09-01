@@ -1,73 +1,52 @@
-# Welcome to your Lovable project
+file structure 
+perfume/
+├─ backend/ # Server and database setup
+│ ├─ node_modules/
+│ ├─ .env # Environment variables
+│ ├─ seed.js # Script to seed MongoDB with products
+│ ├─ server.js # Express server and API routes
+│ └─ image.png # Sample image (optional)
+└─ gucci-perfume/ # Frontend React app
+├─ node_modules/
+├─ public/
+├─ src/
+├─ package.json
+└─ README.md
 
-## Project info
 
-**URL**: https://lovable.dev/projects/73508745-be0c-428e-b73a-c5871e6b643f
+here Two folder 
+                1: frontend folder (gucci-perfume )
+                2: backend folder  (server mock api and mongodb storage)
 
-## How can I edit this code?
 
-There are several ways of editing your application.
 
-**Use Lovable**
+first start with a backend folder 
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/73508745-be0c-428e-b73a-c5871e6b643f) and start prompting.
+## Backend
 
-Changes made via Lovable will be committed automatically to this repo.
+The backend is built using **Node.js, Express, and MongoDB**.
 
-**Use your preferred IDE**
+### Features
+- Connects to MongoDB using `mongoose`.
+- Provides REST API endpoints to fetch products:
+  - `GET /api/products` - Get all products
+  - `GET /api/products/:id` - Get a product by ID
+- Seed script (`seed.js`) to populate the database with initial products.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Run Backend
+1. Navigate to the backend folder:  
+   ```bash
+   cd backend
+   npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+MONGO_URI=your_mongodb_connection_string // ## i use MONGO_URI=mongodb://127.0.0.1:27017/perfume_shops 
+PORT=5000
 
-Follow these steps:
+node server.js
+optional # node seed.js
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## Frontend
+cd gucci-perfume
+npm install
 npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/73508745-be0c-428e-b73a-c5871e6b643f) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

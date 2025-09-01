@@ -1,6 +1,8 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
+
+
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-background via-background/95 to-background/90 text-muted-foreground py-16 px-6 relative overflow-hidden">
@@ -55,7 +57,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-primary mb-4 border-b-2 border-primary inline-block pb-1">
             Follow
           </h3>
-          <p className="mb-4">#AromaScribe</p>
+          <p className="mb-4">#gucciScribe</p>
           <div className="flex space-x-4">
             <a href="#"><FaFacebookF className="text-xl hover:text-primary transition-transform transform hover:scale-110" /></a>
             <a href="#"><FaInstagram className="text-xl hover:text-primary transition-transform transform hover:scale-110" /></a>
@@ -66,7 +68,7 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <div className="relative z-10 mt-10 text-center text-xs text-muted-foreground/70 border-t border-accent/20 pt-6">
-        © {new Date().getFullYear()} Aroma Scribe. All rights reserved.
+        © {new Date().getFullYear()} gucci Scribe. All rights reserved.
       </div>
     </footer>
   );

@@ -1,25 +1,36 @@
-import { Minus, Plus, X, ShoppingBag } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { useApp } from '@/contexts/AppContext';
+import { Minus, Plus, X, ShoppingBag } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { useApp } from "@/contexts/AppContext";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const CartDrawer = () => {
   const { state, dispatch } = useApp();
+  const router = useNavigate(); 
 
   const updateQuantity = (id: string, size: string, change: number) => {
-    const item = state.cart.find(item => item.id === id && item.size === size);
+    const item = state.cart.find(
+      (item) => item.id === id && item.size === size
+    );
     if (item) {
       const newQuantity = item.quantity + change;
       if (newQuantity <= 0) {
-        dispatch({ type: 'REMOVE_FROM_CART', payload: `${id}-${size}` });
+        dispatch({ type: "REMOVE_FROM_CART", payload: `${id}-${size}` });
       } else {
-        dispatch({ type: 'UPDATE_CART_QUANTITY', payload: { id: `${id}-${size}`, quantity: newQuantity } });
+        dispatch({
+          type: "UPDATE_CART_QUANTITY",
+          payload: { id: `${id}-${size}`, quantity: newQuantity },
+        });
       }
     }
   };
 
   const getTotalPrice = () => {
-    return state.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return state.cart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   };
 
   const getTotalItems = () => {
@@ -31,11 +42,11 @@ const CartDrawer = () => {
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40"
-        onClick={() => dispatch({ type: 'TOGGLE_CART', payload: false })}
+        onClick={() => dispatch({ type: "TOGGLE_CART", payload: false })}
       />
-      
+
       {/* Cart Drawer */}
       <div className="fixed right-0 top-0 h-full w-full max-w-md bg-card border-l border-border z-50 shadow-luxury">
         <div className="flex flex-col h-full">
@@ -53,7 +64,9 @@ const CartDrawer = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => dispatch({ type: 'TOGGLE_CART', payload: false })}
+              onClick={() =>
+                dispatch({ type: "TOGGLE_CART", payload: false })
+              }
             >
               <X className="h-5 w-5" />
             </Button>
@@ -72,19 +85,26 @@ const CartDrawer = () => {
             ) : (
               <div className="space-y-4">
                 {state.cart.map((item) => (
-                  <div key={`${item.id}-${item.size}`} className="flex items-center space-x-4 p-4 rounded-lg bg-background border border-border">
-                    <img 
-                      src={item.image} 
+                  <div
+                    key={`${item.id}-${item.size}`}
+                    className="flex items-center space-x-4 p-4 rounded-lg bg-background border border-border"
+                  >
+                    <img
+                      src={item.image}
                       alt={item.name}
                       className="w-16 h-16 object-cover rounded-lg"
                     />
-                    
+
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium truncate">{item.name}</h3>
-                      <p className="text-sm text-muted-foreground">{item.size}</p>
-                      <p className="text-sm font-semibold text-primary">${item.price}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {item.size}
+                      </p>
+                      <p className="text-sm font-semibold text-primary">
+                        ${item.price}
+                      </p>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
                       <Button
                         variant="outline"
@@ -94,9 +114,11 @@ const CartDrawer = () => {
                       >
                         <Minus className="h-3 w-3" />
                       </Button>
-                      
-                      <span className="w-8 text-center font-medium">{item.quantity}</span>
-                      
+
+                      <span className="w-8 text-center font-medium">
+                        {item.quantity}
+                      </span>
+
                       <Button
                         variant="outline"
                         size="icon"
@@ -117,14 +139,34 @@ const CartDrawer = () => {
             <div className="border-t border-border p-6 space-y-4">
               <div className="flex justify-between items-center text-lg font-semibold">
                 <span>Total:</span>
-                <span className="text-primary">${getTotalPrice().toFixed(2)}</span>
+                <span className="text-primary">
+                  ${getTotalPrice().toFixed(2)}
+                </span>
               </div>
-              
+
               <div className="space-y-2">
-                <Button variant="hero" className="w-full">
+                {/* Checkout */}
+                <Button
+                  variant="hero"
+                  className="w-full"
+                  onClick={() => {
+                    toast.success("Proceeding to Checkout 💳");
+                    dispatch({ type: "TOGGLE_CART", payload: false });
+                    router.push("/checkout"); // 👈 navigate to checkout page
+                  }}
+                >
                   Checkout
                 </Button>
-                <Button variant="outline" className="w-full">
+
+                {/* View Cart */}
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => {
+                    dispatch({ type: "TOGGLE_CART", payload: false });
+                    router.push("/cart"); // 👈 navigate to cart page
+                  }}
+                >
                   View Cart
                 </Button>
               </div>

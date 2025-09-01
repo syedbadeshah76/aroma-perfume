@@ -25,7 +25,7 @@ export default function AboutPage() {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="mt-6 max-w-3xl text-lg md:text-xl text-gray-600"
         >
-          Aroma Scribe is more than just a perfume brand — we’re storytellers of fragrance.  
+          gucci Scribe is more than just a perfume brand — we’re storytellers of fragrance.  
           Our passion is to craft luxury perfumes that embody elegance, confidence, and timeless beauty.
         </motion.p>
       </section>
@@ -87,7 +87,7 @@ export default function AboutPage() {
 
       {/* Footer */}
       <footer className="text-center py-10 text-gray-500">
-        © {new Date().getFullYear()} Aroma Scribe. All Rights Reserved.
+        © {new Date().getFullYear()} gucci Scribe. All Rights Reserved.
       </footer>
     </div>
   );
